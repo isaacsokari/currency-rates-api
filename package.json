@@ -1,0 +1,28 @@
+{
+  "name": "currency-rates-api",
+  "version": "1.0.0",
+  "description": "A Service to return the currency exchange rates between a base currency and target currencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaacsokari/currency-rates-api.git"
+  },
+  "keywords": [
+    "Exchange",
+    "Rates"
+  ],
+  "author": "Isaac Sokari (https://isaacsokari.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isaacsokari/currency-rates-api/issues"
+  },
+  "homepage": "https://github.com/isaacsokari/currency-rates-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  }
+}
