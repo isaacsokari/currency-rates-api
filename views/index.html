@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exchange Rates</title>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exchange Rates</h1>
+    <p>To use the API, use this format</p>
+    <h3>
+      {base_url}/api/rates?base={base currency}&amp;currency={target currency}
+    </h3>
+    <h4>
+      eg.
+      <a href="/api/rates?base=USD&currency=CAD,GBP,EUR">
+        {base_url}/api/rates?base=USD&amp;currency=CAD,GBP,EUR
+      </a>
+    </h4>
+  </body>
+</html>

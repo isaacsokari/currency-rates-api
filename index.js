@@ -1,6 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const cors = require('cors');
+const path = require('path');
 
 const { getDate } = require('./utils');
 
@@ -10,34 +11,35 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
 app.get('/api/rates', (req, res) => {
   const { base, currency } = req.query;
-  const results = {
-    base,
-    date: getDate(),
-    rates: {
-      currency,
-    },
-  };
 
-  fetch(
-    `https://api.exchangeratesapi.io/latest?base=${base}&symbols=${currency}`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      res.json({
-        results: {
-          base,
-          date: getDate(),
-          rates: data.rates,
-          error: data.error,
-        },
+  try {
+    fetch(
+      `https://api.exchangeratesapi.io/latest?base=${base}&symbols=${currency}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          res.status(400);
+          res.json({ error: data.error });
+        }
+        res.status(200);
+        res.json({
+          results: {
+            base,
+            date: getDate(),
+            rates: data.rates,
+          },
+        });
       });
-    });
+  } catch (error) {
+    res.status(500);
+    res.json({ error });
+  }
 });
 
 app.listen(PORT, () => {
