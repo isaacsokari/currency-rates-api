@@ -10,6 +10,13 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
+// redirect to https on production
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.redirect(`https://${req.headers.host}${req.url}`);
+  });
+}
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/index.html'));
 });
