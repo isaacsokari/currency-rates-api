@@ -12,7 +12,7 @@ app.use(cors());
 
 // redirect to https on production
 if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res, next) => {
+  app.use((req, res, next) => {
     if (req.secure) {
       next();
     } else {
